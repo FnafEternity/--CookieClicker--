@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
+<head>
     <meta charset="utf-8" />
     <title>CookieClicker</title>
-	<img src="assets/CookieBild.jpg" alt="CookieBild">
+</head>
 
+<body>
+    <img src="assets/CookieBild.jpg" id="cookieBild" alt="CookieBild" style="display:none; width:350px; margin: 0 auto;">
+    <table>
+        <tr>
+            <span id="CookieZähler" style="#000000"></span>
+        </tr>
+        <canvas id="myCanvas" style="display:inline; border:1px solid #000000; background: #D1CFCF;">
+        </canvas>
+        <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var cookie = document.getElementById("cookieBild");
 
+        var anzahlClicks = 0;
+        var score = 0;
 
+        canvas.width = window.innerWidth - 30;
+        canvas.height = window.innerHeight - 30;
 
-   </head>
+        document.addEventListener("click", canvasClick);
 
-       <body>
-       <script>
+        window.onload = function() {
+            ctx.drawImage(cookie, canvas.width / 2 - cookie.width / 2, canvas.height / 2 - cookie.height / 2);
+            drawScore();
+        };
 
+        function canvasClick(e) {
+            var posCookie = {
+                x: canvas.width / 2 - cookie.width / 2,
+                y: canvas.height / 2 - cookie.height / 2
+            }
+            
+            console.log(e);
 
+            if (posCookie.x <= e.clientX && posCookie.y <= e.clientY &&
+                posCookie.x + cookie.width >= e.clientX && posCookie.y + cookie.height >= e.clientY) {
+            	cookieGeklickt();
+            }
 
+        }
 
+        function cookieGeklickt() {
+            anzahlClicks++;
+            console.log(anzahlClicks);
+            // Anzahl der Coookies aktualisieren
+            drawScore();
+        }
 
-
-         </script>
-        </body>
+        function drawScore() {
+            ctx.font = "16px Arial";//Pixel Font mit einbringen!
+            ctx.fillStyle = "#0095DD";
+            ctx.clearRect(0, 0, 120, 33);
+            ctx.fillText("Score: " + anzahlClicks, 8, 20);
+        }
+        </script>
+</body>
 
 </html>
