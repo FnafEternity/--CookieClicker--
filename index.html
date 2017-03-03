@@ -37,12 +37,12 @@
                 x: canvas.width / 2 - cookie.width / 2,
                 y: canvas.height / 2 - cookie.height / 2
             }
-            
+
             console.log(e);
 
             if (posCookie.x <= e.clientX && posCookie.y <= e.clientY &&
                 posCookie.x + cookie.width >= e.clientX && posCookie.y + cookie.height >= e.clientY) {
-            	cookieGeklickt();
+                cookieGeklickt();
             }
 
         }
@@ -55,11 +55,27 @@
         }
 
         function drawScore() {
-            ctx.font = "16px Arial";//Pixel Font mit einbringen!
+            ctx.font = "16px Arial"; //Pixel Font mit einbringen!
             ctx.fillStyle = "#0095DD";
-            ctx.clearRect(0, 0, 120, 33);
-            ctx.fillText("Score: " + anzahlClicks, 8, 20);
+            ctx.clearRect(60, 5, 130, 25);
+            ctx.fillText("Cookies:" + anzahlClicks, 30, 20);
         }
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        context.beginPath();
+        context.rect(0, 0, 200, 35);
+        context.lineWidth = 7;
+        context.strokeStyle = 'black';
+        context.stroke();
+
+        function updateCookieScore() {
+
+        }
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.rect(500, 15, 160 , 400);
+        ctx.stroke();
         </script>
 </body>
 
